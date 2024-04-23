@@ -15,7 +15,9 @@ const LoginForm = () => {
 
 
     const handleSubmit = async (e: any) => {
-        e.preventDefault();
+        e.preventDefault()
+
+        console.log(email, password);
        
         if (!email || !password) {
             setError('All fields are required');
@@ -26,23 +28,20 @@ const LoginForm = () => {
             return;
         }
         setError('');
+        
         try {
-            const res = await fetch('localhost:3000/api/login', {
+            const response = await fetch('http://localhost:3000/api/auth/login', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ email, password })
             });
-            const data = await res.json();
-            if (data.error) {
-                setError(data.error);
-                console.log(data.error);
-                return;
-            }
-            router.push('/dashboard');
+            const data = await response.json();
+            console.log(data);
         } catch (error) {
             console.log(error);
+            setError('An error occurred');
         }
 
     }
@@ -56,7 +55,7 @@ const LoginForm = () => {
             </div>
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form className="space-y-6" action="#" method="POST">
+                <form className="space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label  className="block mb-2 text-sm font-medium">Adresse email</label>
                             <div className="mt-2">
@@ -86,7 +85,12 @@ const LoginForm = () => {
                         </div>
 
                         <div>
-                            <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+                            <button 
+                                type="submit" 
+                                // onClick={handleSubmit}
+                                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                    Sign in
+                            </button>
                         </div>
                 </form>           
             </div>
