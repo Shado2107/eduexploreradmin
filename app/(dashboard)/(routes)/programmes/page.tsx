@@ -1,6 +1,7 @@
 "use client"
 
 import Header from "@/components/Header";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FiFile } from "react-icons/fi";
@@ -24,7 +25,16 @@ const Programmespage = () => {
 
     return (  
         <>
-           <Header title='Programmes' />
+           
+           
+            <div className="flex flex-row">
+                <Header title='Programmes' /> 
+                <Link href="/programmes/create" className="bg-blue-700 text-white p-2 rounded-lg">
+                    Ajouter un programme   
+                </Link>
+            </div>       
+               
+        
             <div className='p-4'>
                 <div className="w-full m-auto border rounded-lg bg-white overflow-y-auto">
                     <div className="my-3 p-2 grid md:grid-cols-6 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer">
