@@ -1,11 +1,20 @@
+"use client"
+
 import { Main } from "next/document";
 import Link from "next/link";
 import React from "react";
-import { FiSettings } from "react-icons/fi";
+import { FiLogOut, FiSettings, FiUsers } from "react-icons/fi";
 import { RxDashboard, RxFile, RxPerson, RxSketchLogo } from "react-icons/rx";
 
 
 const Sidebar = ({children}:any) => {
+
+    const Logout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = '/';
+    }
+
     return (
         
         <div className="flex">
@@ -27,14 +36,24 @@ const Sidebar = ({children}:any) => {
                             <RxPerson size={20} />
                         </div>
                     </Link>
+                    <Link href="/conseillers">
+                        <div className="bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block">
+                            <FiUsers size={20} />
+                        </div>
+                    </Link>
                     <Link href="/programmes">
                         <div className="bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block">
                             <RxFile size={20} />
                         </div>
                     </Link>
-                    <Link href="/">
+                    <Link href="/settings">
                         <div className="bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block">
                             <FiSettings size={20} />
+                        </div>
+                    </Link>
+                    <Link href="" onClick={Logout}>
+                        <div className="bg-gray-100 hover:bg-gray-200 cursor-pointer my-4 p-3 rounded-lg inline-block">
+                            <FiLogOut size={20} />
                         </div>
                     </Link>
                </div>

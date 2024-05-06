@@ -30,7 +30,7 @@ const LoginForm = () => {
         setError('');
         
         try {
-            const response = await fetch('http://localhost:3000/api/auth/login', {
+            const response = await fetch('http://localhost:3000/api/users/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -39,6 +39,14 @@ const LoginForm = () => {
             });
             const data = await response.json();
             console.log(data);
+            if (data.error) {
+                setError(data.message);
+                return;
+            }
+
+            localStorage.setItem('token', data.data.token);
+            localStorage.setItem('user', JSON.stringify(data.data.userdata));
+            router.push('/home');
         } catch (error) {
             console.log(error);
             setError('An error occurred');
