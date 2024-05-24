@@ -10,7 +10,7 @@ const Programmespage = () => {
 
     const [programmes, setProgrammes] = useState([]);
     const fetchProgrammes = async () => {
-        const response = await fetch('http://localhost:3000/api/programmes');
+        const response = await fetch('http://localhost:5001/api/programmes');
         const data = await response.json();
         setProgrammes(data.data);
     }

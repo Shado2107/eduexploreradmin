@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 const createProgramme = () => {
 
     const [programmes, setProgrammes] = useState([{ libelle: '', duree: '', description: '' }]);
+    const [etablissement, setEtablissement] = useState([{ nom: '', adresse: '', tel: '', site: '' }]);
     const [domaine, setDomaine] = useState('');
     const [desc, setDesc] = useState('');
 
@@ -19,12 +20,25 @@ const createProgramme = () => {
     const addProgramme = () => {
         setProgrammes([...programmes, { libelle: '', duree: '', description: ''}]);
     }
+    
 
     const removeProgramme = (index: any) => {
         const newFields = [...programmes];
         newFields.splice(index, 1);
         setProgrammes(newFields);
     }
+
+    const addEtablissiment = () => {
+        setEtablissement([...etablissement, { nom: '', adresse: '', tel: '', site: ''}]);
+    }
+
+    const removeEtablissiment = (index: any) => {
+        const newFields = [...etablissement];
+        newFields.splice(index, 1);
+        setEtablissement(newFields);
+    }
+
+    
 
 
 
@@ -61,115 +75,100 @@ const createProgramme = () => {
                                 onChange={(e) => setDomaine(e.target.value)}
                             />
                         </div>
+                        
                         {programmes.map((programme, index) => (
-                        <div key={index} className="w-full sm:col-span-12 flex flex-row gap-1">
-                            <div className="w-full sm:col-span-4">
-                                <label className="block mb-2 text-sm font-medium text-gray-900">Libelle de la formation</label>
-                                <input
-                                    type="text"
-                                    name="libelle"
-                                    id="libelle"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                    placeholder="libelle de la formation"
-                                    onChange={(e) => handleSubmit(index, e)}
-                                />
-                            </div>
-                            <div className="w-full sm:col-span-4">
-                                <label className="block mb-2 text-sm font-medium text-gray-900">Durée de la formation</label>
-                                <input
-                                    type="number"
-                                    name="duree"
-                                    id="duree"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                    placeholder="durée de la formation"
-                                    onChange={(e) => handleSubmit(index, e)}
-                                />
-                            </div>
-                            <div className="w-full sm:col-span-4">
-                                <label className="block mb-2 text-sm font-medium text-gray-900">Description de la formation</label>
-                                <input
-                                    type="texte"
-                                    name="description"
-                                    id="description"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                    placeholder="description"
-                                    onChange={(e) => handleSubmit(index, e)}
-                                />
-                            </div>
-                            <div className='flex justify-center items-center gap-1'> 
-                                <div className='mt-6'>
-                                    <button
-                                        type="button"
-                                        className="inline-flex items-center justify-center w-10 h-10 bg-black text-white rounded-full focus:ring-primary-600 focus:border-primary-600"
-                                        onClick={addProgramme}
 
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="w-6 h-6"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth={2}
-                                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                                            />
-                                        </svg>
-                                    </button>
+                            <div key={index} className="w-full sm:col-span-12 flex flex-row gap-1">
+                                
+                                <div className="w-full sm:col-span-4">
+                                    <label className="block mb-2 text-sm font-medium text-gray-900">Libelle de la formation</label>
+                                    <input
+                                        type="text"
+                                        name="libelle"
+                                        id="libelle"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        placeholder="libelle de la formation"
+                                        onChange={(e) => handleSubmit(index, e)}
+                                    />
                                 </div>
-                                <div className='mt-6'>
-                                    <button
-                                        type="button"
-                                        className="inline-flex items-center justify-center w-10 h-10 bg-red-700 text-white rounded-full focus:ring-primary-600 focus:border-primary-600"
-                                        onClick={() => removeProgramme(index)}
-                                        
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="w-6 h-6"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
+                                <div className="w-full sm:col-span-4">
+                                    <label className="block mb-2 text-sm font-medium text-gray-900">Durée de la formation</label>
+                                    <input
+                                        type="number"
+                                        name="duree"
+                                        id="duree"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        placeholder="durée de la formation"
+                                        onChange={(e) => handleSubmit(index, e)}
+                                    />
+                                </div>
+                                <div className="w-full sm:col-span-4">
+                                    <label className="block mb-2 text-sm font-medium text-gray-900">Description de la formation</label>
+                                    <input
+                                        type="texte"
+                                        name="description"
+                                        id="description"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        placeholder="description"
+                                        onChange={(e) => handleSubmit(index, e)}
+                                    />
+                                </div>
+                                <div className='flex justify-center items-center gap-1'> 
+                                    <div className='mt-6'>
+                                        <button
+                                            type="button"
+                                            className="inline-flex items-center justify-center w-10 h-10 bg-black text-white rounded-full focus:ring-primary-600 focus:border-primary-600"
+                                            onClick={addProgramme}
+
                                         >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth={2}
-                                                d="M6 12H18"
-                                            />
-                                        </svg>
-                                    </button>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="w-6 h-6"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth={2}
+                                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                                />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div className='mt-6'>
+                                        <button
+                                            type="button"
+                                            className="inline-flex items-center justify-center w-10 h-10 bg-red-700 text-white rounded-full focus:ring-primary-600 focus:border-primary-600"
+                                            onClick={() => removeProgramme(index)}
+                                            
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="w-6 h-6"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth={2}
+                                                    d="M6 12H18"
+                                                />
+                                            </svg>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            
                          ))}
 
-                        <div className="w-full sm:col-span-6">
-                            <label className="block mb-2 text-sm font-medium text-gray-900">Category</label>
-                            <select
-                                id="category"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 w-full p-2.5"
-                            >
-                                <option>Select category</option>
-                                <option value="TV">TV/Monitors</option>
-                                <option value="PC">PC</option>
-                                <option value="GA">Gaming/Console</option>
-                                <option value="PH">Phones</option>
-                            </select>
-                        </div>
-                        <div className="w-full sm:col-span-6">
-                            <label className="block mb-2 text-sm font-medium text-gray-900">Item Weight (kg)</label>
-                            <input
-                                type="number"
-                                name="item-weight"
-                                id="item-weight"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                placeholder="12"
-                            />
-                        </div>
+                        
+                      
+
+
                         <div className="sm:col-span-12">
                             <label className="block mb-2 text-sm font-medium text-gray-900">Description</label>
                             <textarea

@@ -13,7 +13,7 @@ const createConseiller = () => {
 
     const addConseiller = async (e:any) => {
         e.preventDefault();
-        const response = await fetch('http://localhost:3000/api/users/register', {
+        const response = await fetch('http://localhost:5001/api/users/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ const createConseiller = () => {
                         className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-500 rounded-lg focus:ring-4 focus:ring-primary-200 hover:bg-primary-800"
                         onClick={addConseiller}
                     >
-                        Ajouter le programme d'étude
+                        Ajouter le conseiller
                     </button>
                 </form>
             </div>
